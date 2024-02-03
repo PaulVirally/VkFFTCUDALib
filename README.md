@@ -8,7 +8,7 @@ git clone https://github.com/PaulVirally/VkFFTCUDALib/ --recurse-submodules
 cd VkFFTCUDALib
 mkdir build
 cd build
-cmake -DCMAKE_BUILD_TYPE=Release
+cmake -DCMAKE_BUILD_TYPE=Release ..
 make
 sudo make install
 ```
