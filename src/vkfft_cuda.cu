@@ -2,7 +2,7 @@
 
 VkFFTConfiguration* new_config(const pfUINT fftdim, const pfUINT buffer_dim, const pfUINT* size, const pfUINT* omit_dims, const pfUINT num_batches,
                                const pfUINT coalesced_memory, const pfUINT aimThreads, const pfUINT numSharedBanks,
-                               const bool forward, const bool use_double_precision, const bool inplace, const bool normalize) {
+                               const bool forward, const bool use_double_precision, const bool inplace) {
     VkFFTConfiguration* const config = new VkFFTConfiguration({});
 
     // FFT dimension config
@@ -51,8 +51,6 @@ VkFFTConfiguration* new_config(const pfUINT fftdim, const pfUINT buffer_dim, con
 
         config->inputBufferSize = buffer_size;
     }
-
-    config->normalize = normalize;
 
     // Optional optimization parameters
     if (coalesced_memory) config->coalescedMemory = coalesced_memory;
