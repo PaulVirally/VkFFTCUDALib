@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.18)
 project(VkFFTCUDA
-    VERSION 0.1.0
+    VERSION 0.1.1
     LANGUAGES CXX CUDA
     DESCRIPTION "Shared library for Julia bindings for VkFFT for the CUDA backend")
 
@@ -17,6 +17,7 @@ endif()
 include(GNUInstallDirs)
 
 set(VKFFT_BACKEND 1)
+set(VKFFT_MAX_FFT_DIMENSIONS 10)
 add_library(VkFFTCUDA SHARED src/vkfft_cuda.cu)
 
 find_package(CUDA 9.0 REQUIRED)
@@ -24,6 +25,7 @@ set_target_properties(VkFFTCUDA PROPERTIES CUDA_ARCHITECTURES 60 70 75 80 86)
 target_compile_options(${PROJECT_NAME} PUBLIC "$<$<COMPILE_LANGUAGE:CUDA>:SHELL:
 -std=c++11
 -DVKFFT_BACKEND=${VKFFT_BACKEND}
+-DVKFFT_MAX_FFT_DIMENSIONS=${VKFFT_MAX_FFT_DIMENSIONS}
 -gencode arch=compute_60,code=compute_60
 -gencode arch=compute_70,code=compute_70 
 -gencode arch=compute_75,code=compute_75 
@@ -34,7 +36,7 @@ set_target_properties(VkFFTCUDA PROPERTIES CUDA_RESOLVE_DEVICE_SYMBOLS ON)
 
 add_library(VkFFT INTERFACE)
 target_include_directories(VkFFT INTERFACE ${CMAKE_SOURCE_DIR}/lib/VkFFT/vkFFT/)
-target_compile_definitions(VkFFT INTERFACE -DVKFFT_BACKEND=${VKFFT_BACKEND})
+target_compile_definitions(VkFFT INTERFACE -DVKFFT_BACKEND=${VKFFT_BACKEND} -DVKFFT_MAX_FFT_DIMENSIONS=${VKFFT_MAX_FFT_DIMENSIONS})
 
 add_library(half INTERFACE)
 target_include_directories(half INTERFACE ${CMAKE_SOURCE_DIR}/lib/VkFFT/half_lib/)
