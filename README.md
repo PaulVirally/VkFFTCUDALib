@@ -1,4 +1,8 @@
 # VkFFTCUDALib
+
+⚠️ This library has been archived and is deprecated in favour of
+[libvkfft](https://github.com/PaulVirally/libvkfft). ⚠️
+
 This is the C++ library for the [Julia bindings](https://github.com/PaulVirally/VkFFTCUDA.jl) to [VkFFT](https://github.com/DTolm/VkFFT). There is no need to use this repository unless you are trying to modify the C++ library itself. The Julia bindings can be found here: [VkFFTCUDA.jl](https://github.com/PaulVirally/VkFFTCUDA.jl)
 
 ## Building the library
